@@ -1,0 +1,27 @@
+{
+    "name": "mvkaran/exotel",
+    "description": "Exotel API library for Composer",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "^6.2"
+    },
+
+  "require-dev": {
+    "guzzlehttp/guzzle": "^6.2"
+   },
+
+  "autoload": {
+    "psr-4": {
+      "MVKaran\\Exotel\\": "src"
+    }
+  },
+
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "MV Karan",
+            "email": "karan@exotel.in"
+        }
+    ],
+    "minimum-stability": "dev"
+}
