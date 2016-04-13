@@ -1,6 +1,7 @@
 {
     "name": "mvkaran/exotel",
-    "description": "Exotel API library for Composer",
+    "description": "Exotel Call and SMS API client library",
+    "keywords" : ["exotel", "call", "sms"],
     "type": "library",
     "require": {
         "guzzlehttp/guzzle": "^6.2"
@@ -20,7 +21,9 @@
     "authors": [
         {
             "name": "MV Karan",
-            "email": "karan@exotel.in"
+            "email": "karan@exotel.in",
+            "role" : "Developer Evangelist",
+            "homepage" : "http://www.mvkaran.com"
         }
     ],
     "minimum-stability": "dev"

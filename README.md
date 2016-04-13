@@ -3,13 +3,16 @@
 Exotel PHP client library for use with Composer package dependency manager
 
 - [Installation](#installation)
- - [Usage](#usage)
+- [Usage](#usage)
  	- [Connect Two Numbers](#connect-two-numbers)
 	- [Connect Call to Flow or App](#connect-call-to-flow-or-app)
 	- [Get Details of a Call](#get-details-of-a-call)
 	- [Send a SMS](#send-a-sms)
 	- [Get Details of a SMS](#get-details-of-a-sms)
 - [Exceptions](#exceptions)
+- [Reference](#reference)
+	- [Call](#call)
+	- [SMSMessage](#smsmessage)
 - [More Information](#more-information)
 - [Errors](#errors)
 - [Contribute](#contribute)
@@ -54,7 +57,7 @@ $result = $client->call_number([
 
 ```
 
-The `$result` will be a JSON string containing an Exotel `Call` object
+The `$result` will be an associative array with keys mentioned in [Call](#call)
 
 ***
 #### Connect Call to Flow or App
@@ -75,7 +78,7 @@ $result = $client->call_flow([
 
 ```
 
-The `$result` will be a JSON string containing an Exotel `Call` object
+The `$result` will be an associative array with keys mentioned in [Call](#call)
 
 ***
 #### Get Details of a Call
@@ -86,7 +89,7 @@ You can get the details of a call using the `Sid` of the Call that you received 
 $result = $client->call_details($call_sid);
 ```
 
-The `$result` will be a JSON string containing an Exotel `Call` object
+The `$result` will be an associative array with keys mentioned in [Call](#call)
 
 
 ***
@@ -104,7 +107,7 @@ $result = $client->call_number([
 
 ```
 
-The `$result` will be a JSON string containing an Exotel `Sms` object
+The `$result` will be an associative array with keys mentioned in [SMSMessage](#smsmessage)
 
 ***
 #### Get Details of a SMS
@@ -115,7 +118,7 @@ You can get the details of a SMS using the `Sid` of the SMS that you received in
 $result = $client->sms_details($sms_sid);
 ```
 
-The `$result` will be a JSON string containing an Exotel `Sms` object
+The `$result` will be an associative array with keys mentioned in [SMSMessage](#smsmessage)
 ***
 ## Exceptions
 
@@ -127,13 +130,64 @@ The library raises a few exceptions when errors occur. You can catch these excep
 
 `ExotelException` Any other exception that is thrown by the API
 ***
+##Reference
+The following section lists the keys in the Call and SMSMessage array that is returned for call and sms methods respectively
+
+###Call
+
+Key | Description
+--- | ----------
+Sid | The unique identifier for this call
+ParentCallSid | Unused
+DateCreated | Time of creation of this resource in YYYY-MM-DD HH:mm:ss format.
+DateUpdated | Time of last update of this resource in YYYY-MM-DD HH:mm:ss format.
+AccountSid | The SID of the account on whose behalf this call was made.
+To | Phone number
+From | Phone number
+PhoneNumberSid | Exophone that was used to make the call.
+Status | Status of the call
+StartTime | Start time of call in YYYY-MM-DD HH:mm:ss format. (UTC +5:30)
+EndTime | End time of call in YYYY-MM-DD HH:mm:ss format. (UTC +5:30)
+Duration | Duration of the call in seconds.
+Price | Price of the call in Indian Rupees. (INR)
+Direction | Indicates the direction of the call.
+AnsweredBy | N/A
+ForwardedFrom | N/A
+CallerName | N/A
+RecordingUrl | URL where the call recording is stored.
+Uri | The URI for this resource, relative to the base URL.
+CallType | Type of call
+
+
+###SMSMessage
+
+Key | Description
+--- | ----------
+Sid | Unique identifier of the resource
+DateCreated | Time of creation of this resource in YYYY-MM-DD HH:mm:ss format. (UTC +5:30)
+DateUpdated | Time of last update of this resource in YYYY-MM-DD HH:mm:ss format. (UTC +5:30)
+DateSent | Time when SMS was sent in YYYY-MM-DD HH:mm:ss format. (UTC +5:30)
+AccountSid | SID of the account from which the SMS was sent
+To | The number to which the SMS was sent
+From | The Exophone or SMS ID from which the SMS was sent
+Body | URL-encoded string of the SMS body
+Status | Status of SMS
+Direction | Direction of the SMS
+Price | Price of the SMS in Indian Rupees (INR)
+ApiVersion | API version used to serve this resource
+Uri | The URI for this resource, relative to the base URL.
+
+
+
+
+***
 ## More Information
 
-For more information regarding terminologies or applets, please check out the official API documentations at `http://support.exotel.in/support/solutions/folders/92360`
+For more information regarding terminologies or applets, please check out the official API documentations at http://support.exotel.in/support/solutions/folders/92360
 ***
 ## Errors
 
-If you come across any errors / exceptions while using this library which is not mentioned here, please create an issue on GitHub or report them to us at `community@exotel.in`
+If you come across any errors / exceptions while using this library which is not mentioned here, please create an issue on GitHub or report them to us at [community@exotel.in](mailto:community@exotel.in)
 ***
 ## Contribute
 
@@ -141,4 +195,7 @@ Feel free to contribute to this library by forking it. Pull requests are encoura
 ***
 ## Change Log
 
-`Version 1.0.0` Initial Release
+Version | Changes
+--------- | -----------
+1.0.0 | Initial release
+1.1.0 | Methods return an associative array instead of a JSON string
