@@ -96,7 +96,7 @@ The `$result` will be an associative array with keys mentioned in [Call](#call)
 #### Send a SMS
 
 ```php
-$result = $client->call_number([
+$result = $client->send_sms([
 	'from' => '08088919888', //One of your Exophones,
 	'to' => '09879879876', 
 	'body' => 'Hey there! Explore Exotel!', 
